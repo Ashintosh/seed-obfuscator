@@ -30,6 +30,7 @@ private:
 
 public:
     static std::string obfuscate_seed(std::string, std::string);
+    static std::string deobfuscate_seed(std::string, std::string);
 };
 
 #endif // SEEDSTRINGTOOLS_H

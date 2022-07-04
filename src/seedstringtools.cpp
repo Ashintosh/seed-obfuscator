@@ -101,3 +101,47 @@ std::string seedstringtools::obfuscate_seed(std::string seed, std::string passph
 
     return seedstringtools::vector_to_string(ob_seed_words);
 }
+
+std::string seedstringtools::deobfuscate_seed(std::string seed, std::string passphrase)
+{
+    std::string passphrase_sha256 = SHA256::to_sha256(passphrase);
+    std::vector<std::string> split_seed_phrase = seedstringtools::split_seed_by_whitespace(seed);
+
+    std::vector<int> offset;
+    std::vector<std::string> ct_seed_words;
+
+    for (char& c : passphrase_sha256) {
+        offset.push_back((int) c - '0');
+    }
+
+    for (int i = 0; i < split_seed_phrase.size(); i++) {
+        int word_index = bip39::get_element_index(split_seed_phrase.at(i));
+        int new_word_index;
+
+        // Check if word exists in BIP-39 wordlist
+        if (word_index < 0) {
+            return "";
+        }
+
+        // Decide the offset direction by the int value of offset / 3 and checking if the result is odd or even
+        if ((int)(offset.at(i) / 3) & 1) {
+            new_word_index = word_index + offset.at(i) * 20;
+        } else {
+            new_word_index = word_index - offset.at(i) * 20;
+        }
+
+        while (new_word_index < 0 || new_word_index > bip39::bip_39_wordlist.size()) {
+            if (new_word_index < 0) {
+                int difference = new_word_index * -1;
+                new_word_index = bip39::bip_39_wordlist.size() - difference;
+            } else if (new_word_index > bip39::bip_39_wordlist.size()) {
+                int difference = new_word_index - bip39::bip_39_wordlist.size();
+                new_word_index = difference;
+            }
+        }
+
+        ct_seed_words.push_back(bip39::bip_39_wordlist.at(new_word_index) + ' ');
+    }
+
+    return seedstringtools::vector_to_string(ct_seed_words);
+}

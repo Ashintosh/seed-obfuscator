@@ -37,6 +37,8 @@ private slots:
     void on_btnObfuscate_clicked();
     QString obfuscate_seed(std::string, std::string);
 
+    void on_btnDeobfuscate_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

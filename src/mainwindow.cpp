@@ -61,3 +61,23 @@ void MainWindow::on_btnObfuscate_clicked()
 
     ui->txtResult->setText(QString::fromStdString(obfuscated_seed));
 }
+
+void MainWindow::on_btnDeobfuscate_clicked()
+{
+    std::string seed_phrase = ui->lnSeed->text().toStdString();
+    std::string passphrase = ui->lnPassphrase->text().toStdString();
+
+    if (passphrase.length() < 6) {
+        QMessageBox::warning(this, "Warning", "Passphrase should be at least 6 characters.", QMessageBox::Ok);
+        return;
+    }
+
+    std::string deobfuscated_seed = seedstringtools::deobfuscate_seed(seed_phrase, passphrase);
+    if (deobfuscated_seed.empty()) {
+        QMessageBox::warning(this, "Warning", "Seed phrase contains words that are not a part of the BIP-39 wordlist.", QMessageBox::Ok);
+        return;
+    }
+
+    ui->txtResult->setText(QString::fromStdString(deobfuscated_seed));
+}
+
