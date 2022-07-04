@@ -25,7 +25,6 @@
 class seedstringtools
 {
 private:
-    static std::string to_sha256(std::string);
     static std::vector<std::string> split_seed_by_whitespace(std::string);
     static std::string vector_to_string(std::vector<std::string>);
 

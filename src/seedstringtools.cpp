@@ -30,14 +30,7 @@
 
 // Private //
 
-std::string seedstringtools::to_sha256(std::string input)
-{
-    SHA256 sha256;
-    sha256.update(input);
-    uint8_t * hash_digest = sha256.digest();
 
-    return SHA256::toString(hash_digest);
-}
 
 std::vector<std::string> seedstringtools::split_seed_by_whitespace(std::string input)
 {
@@ -67,7 +60,7 @@ std::string seedstringtools::vector_to_string(std::vector<std::string> input) {
 
 std::string seedstringtools::obfuscate_seed(std::string seed, std::string passphrase)
 {
-    std::string passphrase_sha256 = seedstringtools::to_sha256(passphrase);
+    std::string passphrase_sha256 = SHA256::to_sha256(passphrase);
     std::vector<std::string> split_seed_phrase = seedstringtools::split_seed_by_whitespace(seed);
 
     std::vector<int> offset;

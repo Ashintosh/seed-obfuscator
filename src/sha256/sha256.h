@@ -20,6 +20,7 @@ public:
     uint8_t * digest();
 
     static std::string toString(const uint8_t * digest);
+    static std::string to_sha256(std::string);
 
 private:
     uint8_t  m_data[64];
