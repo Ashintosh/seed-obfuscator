@@ -41,9 +41,6 @@ std::vector<std::string> seedstringtools::split_seed_by_whitespace(std::string i
         seed_word_list.push_back(stringstream_res);
     }
 
-    stringstream.clear();
-    stringstream_res.clear();
-
     return seed_word_list;
 }
 
@@ -52,8 +49,6 @@ std::string seedstringtools::vector_to_string(std::vector<std::string> input) {
     for (std::string &item : input) {
         output_string.append(item);
     }
-
-    input.clear();
 
     return output_string;
 }
