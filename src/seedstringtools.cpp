@@ -30,8 +30,6 @@
 
 // Private //
 
-
-
 std::vector<std::string> seedstringtools::split_seed_by_whitespace(std::string input)
 {
     std::vector<std::string> seed_word_list;
@@ -43,6 +41,9 @@ std::vector<std::string> seedstringtools::split_seed_by_whitespace(std::string i
         seed_word_list.push_back(stringstream_res);
     }
 
+    stringstream.clear();
+    stringstream_res.clear();
+
     return seed_word_list;
 }
 
@@ -51,6 +52,8 @@ std::string seedstringtools::vector_to_string(std::vector<std::string> input) {
     for (std::string &item : input) {
         output_string.append(item);
     }
+
+    input.clear();
 
     return output_string;
 }
@@ -74,14 +77,19 @@ std::string seedstringtools::obfuscate_seed(std::string seed, std::string passph
         int word_index = bip39::get_element_index(split_seed_phrase.at(i));
         int new_word_index;
 
-        // Decide the offset direction by the int value of offset / 3 and checking if the returned result is odd or even
+        // Check if word exists in BIP-39 wordlist
+        if (word_index < 0) {
+            return "";
+        }
+
+        // Decide the offset direction by the int value of offset / 3 and checking if the result is odd or even
         if ((int)(offset.at(i) / 3) & 1) {
             new_word_index = word_index - offset.at(i) * 20;
         } else {
             new_word_index = word_index + offset.at(i) * 20;
         }
 
-        // Check if new index is out of bounds in the bip39 wordlist and corrects the value if necessary
+        // Check if new index is out of bounds in the bip39 wordlist and correct the value if necessary
         while (new_word_index < 0 || new_word_index > bip39::bip_39_wordlist.size()) {
             if (new_word_index < 0) {
                 int difference = new_word_index * -1;
