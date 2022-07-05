@@ -16,10 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>. //
 ////////////////////////////////////////////////////////////////////////////
 
-#include <iostream>
-#include <vector>
-#include <algorithm>
-
 #include "bip39.h"
 
 

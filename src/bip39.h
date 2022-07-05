@@ -21,12 +21,14 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
+
 
 class bip39
 {
 public:
     static const std::vector<std::string> bip_39_wordlist;
-    static int get_element_index(std::string);
+    static int get_element_index(std::string element);
 };
 
 #endif // BIP39_H

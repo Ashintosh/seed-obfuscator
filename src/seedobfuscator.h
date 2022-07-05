@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////
-// seed-obfuscator                                                        // 
+// seed-obfuscator                                                        //
 // Copyright (C) 2022 Ashintosh                                           //
 //                                                                        //
 // This program is free software: you can redistribute it and/or modify   //
@@ -16,40 +16,21 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>. //
 ////////////////////////////////////////////////////////////////////////////
 
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef SEEDOBFUSCATOR_H
+#define SEEDOBFUSCATOR_H
 
 #include <iostream>
-#include <QMainWindow>
-#include <QMessageBox>
-#include <vector>
-#include <fstream>
-
-#include "aboutwindow.h"
-#include "./ui_mainwindow.h"
-#include "seedstringtools.h"
-#include "bip39.h"
 
 
-QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
-QT_END_NAMESPACE
-
-class MainWindow : public QMainWindow
+class seedobfuscator
 {
-    Q_OBJECT
-
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    static const int VER_MAJOR = 0;
+    static const int VER_MINOR = 1;
+    static const int VER_REV = 0;
+    static const int VER_BUILD = 1;
 
-private slots:
-    void on_btnObfuscate_clicked();
-    void on_btnDeobfuscate_clicked();
-    void on_actionAbout_triggered();
-    void on_actionExit_triggered();
-
-private:
-    Ui::MainWindow *ui;
+    static std::string get_version_str();
 };
-#endif // MAINWINDOW_H
+
+#endif // SEEDOBFUSCATOR_H

@@ -19,12 +19,19 @@ set(PROJECT_SOURCES
         src/mainwindow.cpp
         src/mainwindow.h
         src/mainwindow.ui
+        src/aboutwindow.cpp
+        src/aboutwindow.h
+        src/aboutwindow.ui
         src/seedstringtools.cpp
         src/seedstringtools.h
         src/bip39.cpp
         src/bip39.h
         src/sha256/sha256.cpp
         src/sha256/sha256.h
+        src/seedobfuscator.cpp
+        src/seedobfuscator.h
+        src/curl/curl.cpp
+        src/curl/curl.h
     )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -51,6 +58,7 @@ else()
 endif()
 
 target_link_libraries(seed-obfuscator PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(seed-obfuscator PRIVATE curl)
 
 set_target_properties(seed-obfuscator PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com

@@ -20,17 +20,24 @@
 #define SEEDSTRINGTOOLS_H
 
 #include <iostream>
+#include <sstream>
+#include <iomanip>
+#include <sstream>
+#include <fstream>
 #include <vector>
+
+#include "bip39.h"
+#include "sha256/sha256.h"
+
 
 class seedstringtools
 {
 private:
-    static std::vector<std::string> split_seed_by_whitespace(std::string);
-    static std::string vector_to_string(std::vector<std::string>);
+    static std::vector<std::string> split_seed_by_whitespace(std::string input);
+    static std::string vector_to_string(std::vector<std::string> input);
 
 public:
-    static std::string obfuscate_seed(std::string, std::string);
-    static std::string deobfuscate_seed(std::string, std::string);
+    static std::string obfuscate_seed(std::string seed, std::string passphrase, bool reverse_obfuscation);
 };
 
 #endif // SEEDSTRINGTOOLS_H

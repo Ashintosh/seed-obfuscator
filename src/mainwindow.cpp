@@ -16,21 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>. //
 ////////////////////////////////////////////////////////////////////////////
 
-#include <iostream>
-#include <QMessageBox>
-#include <vector>
-#include <fstream>
-
 #include "mainwindow.h"
-#include "./ui_mainwindow.h"
-#include "seedstringtools.h"
-#include "bip39.h"
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->statusBar()->setSizeGripEnabled(false);
 }
 
 MainWindow::~MainWindow()
@@ -53,7 +47,7 @@ void MainWindow::on_btnObfuscate_clicked()
         return;
     }
 
-    std::string obfuscated_seed = seedstringtools::obfuscate_seed(seed_phrase, passphrase);
+    std::string obfuscated_seed = seedstringtools::obfuscate_seed(seed_phrase, passphrase, false);
     if (obfuscated_seed.empty()) {
         QMessageBox::warning(this, "Warning", "Seed phrase contains words that are not a part of the BIP-39 wordlist.", QMessageBox::Ok);
         return;
@@ -72,12 +66,24 @@ void MainWindow::on_btnDeobfuscate_clicked()
         return;
     }
 
-    std::string deobfuscated_seed = seedstringtools::deobfuscate_seed(seed_phrase, passphrase);
+    std::string deobfuscated_seed = seedstringtools::obfuscate_seed(seed_phrase, passphrase, true);
     if (deobfuscated_seed.empty()) {
         QMessageBox::warning(this, "Warning", "Seed phrase contains words that are not a part of the BIP-39 wordlist.", QMessageBox::Ok);
         return;
     }
 
     ui->txtResult->setText(QString::fromStdString(deobfuscated_seed));
+}
+
+void MainWindow::on_actionAbout_triggered()
+{
+    aboutwindow *about = new aboutwindow();
+    about->show();
+}
+
+
+void MainWindow::on_actionExit_triggered()
+{
+    exit(0);
 }
 

@@ -10,3 +10,4 @@ This tool makes it easier than ever to obfuscate your seed phrases with your own
 
 # Credits
 - src/sha256/: [Jérémy LAMBERT (SystemGlitch)](https://github.com/System-Glitch) - [Source](https://github.com/System-Glitch/SHA256) - [License](https://raw.githubusercontent.com/Ashintosh/seed-obfuscator/main/src/sha256/LICENSE)
+- src/curl/: [curl](https://github.com/curl) - [Source](https://github.com/curl/curl) - [License](https://raw.githubusercontent.com/Ashintosh/seed-obfuscator/main/src/curl/LICENSE)
