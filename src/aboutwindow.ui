@@ -10,8 +10,24 @@
     <height>169</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>381</width>
+    <height>169</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>381</width>
+    <height>169</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>About</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../images.qrc">
+    <normaloff>:/images/icon.png</normaloff>:/images/icon.png</iconset>
   </property>
   <widget class="QGroupBox" name="gbxReleaseInfo">
    <property name="geometry">
@@ -110,6 +126,8 @@
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../images.qrc"/>
+ </resources>
  <connections/>
 </ui>

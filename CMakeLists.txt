@@ -32,6 +32,7 @@ set(PROJECT_SOURCES
         src/seedobfuscator.h
         src/curl/curl.cpp
         src/curl/curl.h
+        images.qrc
     )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
