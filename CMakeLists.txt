@@ -59,10 +59,16 @@ else()
 endif()
 
 target_link_libraries(seed-obfuscator PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+
+IF (WIN32)
+find_package( CURL REQUIRED )
+target_link_libraries( seed-obfuscator PRIVATE CURL::libcurl )
+ELSE()
 target_link_libraries(seed-obfuscator PRIVATE curl)
+ENDIF()
 
 set_target_properties(seed-obfuscator PROPERTIES
-    MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
+    MACOSX_BUNDLE_GUI_IDENTIFIER ashs.club
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
     MACOSX_BUNDLE TRUE
