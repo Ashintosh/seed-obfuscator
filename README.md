@@ -14,3 +14,7 @@ This tool makes it easier to obfuscate your seed phrases with your own passphras
 
 # Credits
 - src/sha256/: [Jérémy LAMBERT (SystemGlitch)](https://github.com/System-Glitch) - [Source](https://github.com/System-Glitch/SHA256) - [License](https://raw.githubusercontent.com/Ashintosh/seed-obfuscator/main/src/sha256/LICENSE)
+
+## To Add
+- Cross-wordlist obfuscation
+- Random letter obfuscation
