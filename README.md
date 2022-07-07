@@ -1,6 +1,6 @@
 # seed-obfuscator
 
-### Development Status: **In Progress**
+### Development Status: **Working on new features**
 
 We know the safest way to store your crypto wallet seed phrases is on physical materials such as paper or metal, but how do we protect our phrases from physical attacks such as theft? 
 
