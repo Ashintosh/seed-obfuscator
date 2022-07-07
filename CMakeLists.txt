@@ -19,12 +19,20 @@ set(PROJECT_SOURCES
         src/mainwindow.cpp
         src/mainwindow.h
         src/mainwindow.ui
+        src/aboutwindow.cpp
+        src/aboutwindow.h
+        src/aboutwindow.ui
         src/seedstringtools.cpp
         src/seedstringtools.h
         src/bip39.cpp
         src/bip39.h
         src/sha256/sha256.cpp
         src/sha256/sha256.h
+        src/seedobfuscator.cpp
+        src/seedobfuscator.h
+        src/curl/curl.cpp
+        src/curl/curl.h
+        images.qrc
     )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -52,8 +60,15 @@ endif()
 
 target_link_libraries(seed-obfuscator PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
+if (WIN32)
+    find_package( CURL REQUIRED )
+    target_link_libraries( seed-obfuscator PRIVATE CURL::libcurl )
+else()
+    target_link_libraries(seed-obfuscator PRIVATE curl)
+endif()
+
 set_target_properties(seed-obfuscator PROPERTIES
-    MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
+    MACOSX_BUNDLE_GUI_IDENTIFIER ashs.club
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
     MACOSX_BUNDLE TRUE

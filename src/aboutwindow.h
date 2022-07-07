@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////
-// seed-obfuscator                                                        // 
+// seed-obfuscator                                                        //
 // Copyright (C) 2022 Ashintosh                                           //
 //                                                                        //
 // This program is free software: you can redistribute it and/or modify   //
@@ -16,40 +16,34 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>. //
 ////////////////////////////////////////////////////////////////////////////
 
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef ABOUTWINDOW_H
+#define ABOUTWINDOW_H
 
-#include <iostream>
-#include <QMainWindow>
+#include <QWidget>
+#include <QDesktopServices>
 #include <QMessageBox>
-#include <vector>
-#include <fstream>
 
-#include "aboutwindow.h"
-#include "./ui_mainwindow.h"
-#include "seedstringtools.h"
-#include "bip39.h"
+#include "ui_aboutwindow.h"
+#include "seedobfuscator.h"
+#include "curl/curl.h"
 
+namespace Ui {
+class aboutwindow;
+}
 
-QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
-QT_END_NAMESPACE
-
-class MainWindow : public QMainWindow
+class aboutwindow : public QWidget
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    explicit aboutwindow(QWidget *parent = nullptr);
+    ~aboutwindow();
 
 private slots:
-    void on_btnObfuscate_clicked();
-    void on_btnDeobfuscate_clicked();
-    void on_actionAbout_triggered();
-    void on_actionExit_triggered();
+    void on_btnCheckUpdate_clicked();
 
 private:
-    Ui::MainWindow *ui;
+    Ui::aboutwindow *ui;
 };
-#endif // MAINWINDOW_H
+
+#endif // ABOUTWINDOW_H

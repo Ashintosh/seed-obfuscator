@@ -158,3 +158,12 @@ std::string SHA256::toString(const uint8_t * digest) {
 
     return s.str();
 }
+
+std::string SHA256::to_sha256(std::string input)
+{
+    SHA256 sha256;
+    sha256.update(input);
+    uint8_t * hash_digest = sha256.digest();
+
+    return SHA256::toString(hash_digest);
+}
