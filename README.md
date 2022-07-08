@@ -11,13 +11,13 @@ This tool makes it easier to obfuscate your seed phrases with your own passphras
 ## Obfuscation Types
 - BIP-39 "Caesar Cipher" style obfuscation
 
-# Dependencies
-- Qt5: [Website](https://www.qt.io/) - [Source](https://github.com/qt/qt5) - [License](https://doc.qt.io/qt-5/lgpl.html)
-- libcurl: [Website](https://curl.se/libcurl/) - [Source](https://github.com/curl/curl) - [License](https://raw.githubusercontent.com/curl/curl/master/COPYING)
-
-# Credits
-- src/sha256/: [Jérémy LAMBERT (SystemGlitch)](https://github.com/System-Glitch) - [Source](https://github.com/System-Glitch/SHA256) - [License](https://raw.githubusercontent.com/Ashintosh/seed-obfuscator/main/src/sha256/LICENSE)
-
 ## To Add
 - Cross-wordlist obfuscation
 - Random letter obfuscation
+
+## Dependencies
+- Qt5: [Website](https://www.qt.io/) - [Source](https://github.com/qt/qt5) - [License](https://doc.qt.io/qt-5/lgpl.html)
+- libcurl: [Website](https://curl.se/libcurl/) - [Source](https://github.com/curl/curl) - [License](https://raw.githubusercontent.com/curl/curl/master/COPYING)
+
+## Credits
+- src/sha256/: [Jérémy LAMBERT (SystemGlitch)](https://github.com/System-Glitch) - [Source](https://github.com/System-Glitch/SHA256) - [License](https://raw.githubusercontent.com/Ashintosh/seed-obfuscator/main/src/sha256/LICENSE)
