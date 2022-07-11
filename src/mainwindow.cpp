@@ -47,7 +47,7 @@ void MainWindow::on_btnObfuscate_clicked()
         return;
     }
 
-    std::string obfuscated_seed = seedstringtools::obfuscate_seed(seed_phrase, passphrase, false);
+    std::string obfuscated_seed = seedstringtools::caesar_obfuscate(seed_phrase, passphrase, false, false);
     if (obfuscated_seed.empty()) {
         QMessageBox::warning(this, "Warning", "Seed phrase contains words that are not a part of the BIP-39 wordlist.", QMessageBox::Ok);
         return;
@@ -66,7 +66,7 @@ void MainWindow::on_btnDeobfuscate_clicked()
         return;
     }
 
-    std::string deobfuscated_seed = seedstringtools::obfuscate_seed(seed_phrase, passphrase, true);
+    std::string deobfuscated_seed = seedstringtools::caesar_obfuscate(seed_phrase, passphrase, true, false);
     if (deobfuscated_seed.empty()) {
         QMessageBox::warning(this, "Warning", "Seed phrase contains words that are not a part of the BIP-39 wordlist.", QMessageBox::Ok);
         return;

@@ -47,29 +47,35 @@ std::string seedstringtools::vector_to_string(std::vector<std::string> input) {
 
 // Public //
 
-std::string seedstringtools::obfuscate_seed(std::string seed, std::string passphrase, bool reverse_obfuscation)
+std::string seedstringtools::caesar_obfuscate(std::string seed, std::string passphrase, bool reverse_obfuscation, bool cross_wordlist)
 {
     std::string passphrase_sha256 = SHA256::to_sha256(passphrase);
-    std::vector<std::string> split_seed_phrase = seedstringtools::split_seed_by_whitespace(seed);
+    std::string offset_direc_determiner_sha256 = SHA256::to_sha256(passphrase_sha256);
+    std::vector<std::string> split_seed_phrase = split_seed_by_whitespace(seed);
 
     std::vector<int> offset;
+    std::vector<int> offset_direc_determiner;
     std::vector<std::string> ob_seed_words;
 
     for (char& c : passphrase_sha256) {
         offset.push_back((int) c - '0');
     }
 
+    for (char& c : offset_direc_determiner_sha256) {
+        offset_direc_determiner.push_back((int) c - '0');
+    }
+
     for (int i = 0; i < split_seed_phrase.size(); i++) {
         int word_index = bip39::get_element_index(split_seed_phrase.at(i));
         int new_word_index;
 
-        // Check if word exists in BIP-39 wordlist
+        // Check if word exists in bip39 wordlist
         if (word_index < 0) {
             return "";
         }
 
-        // Decide the offset direction by the int value of offset / 3 and checking if the result is odd or even, check if reversing obfuscation
-        if ((int)(offset.at(i) / 3) & 1) {
+        // Decide the offset direction with the direction determiner offset by deciding if value is odd or even, check if reversing obfuscation
+        if ((int)(offset_direc_determiner.at(i)) & 1) {
             if (reverse_obfuscation)  new_word_index = word_index + offset.at(i) * 20;
             else  new_word_index = word_index - offset.at(i) * 20;
         } else {
@@ -92,5 +98,5 @@ std::string seedstringtools::obfuscate_seed(std::string seed, std::string passph
         ob_seed_words.push_back(bip39::bip_39_wordlist.at(new_word_index) + ' ');
     }
 
-    return seedstringtools::vector_to_string(ob_seed_words);
+    return vector_to_string(ob_seed_words);
 }
