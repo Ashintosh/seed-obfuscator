@@ -97,3 +97,4 @@ std::string seedstringtools::caesar_obfuscate(std::string seed, std::string pass
 
     return vector_to_string(ob_seed_words);
 }
+

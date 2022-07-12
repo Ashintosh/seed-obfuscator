@@ -27,7 +27,7 @@ class seedobfuscator
 public:
     static const int VER_MAJOR = 0;
     static const int VER_MINOR = 1;
-    static const int VER_REV = 1;
+    static const int VER_REV = 2;
     static const int VER_BUILD = 1;
 
     static std::string get_version_str();
