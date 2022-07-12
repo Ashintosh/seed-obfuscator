@@ -47,7 +47,7 @@ std::string seedstringtools::vector_to_string(std::vector<std::string> input) {
 
 // Public //
 
-std::string seedstringtools::caesar_obfuscate(std::string seed, std::string passphrase, int offset_multiplier, bool reverse_obfuscation, bool cross_wordlist)
+std::string seedstringtools::caesar_obfuscate(std::string seed, std::string passphrase, int offset_multiplier, bool reverse_obfuscation)
 {
     std::string passphrase_sha256 = SHA256::to_sha256(passphrase);
     std::string offset_direc_determiner_sha256 = SHA256::to_sha256(passphrase_sha256);
