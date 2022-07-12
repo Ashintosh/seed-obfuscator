@@ -16,7 +16,7 @@ This tool makes it easier to obfuscate your seed phrases with your own passphras
 - Random letter obfuscation
 
 ## Dependencies
-- Qt5: [Website](https://www.qt.io/) - [Source](https://github.com/qt/qt5) - [License](https://doc.qt.io/qt-5/lgpl.html)
+- Qt6: [Website](https://www.qt.io/) - [Source](https://github.com/qt/qtbase) - [License](https://doc.qt.io/qt-6/lgpl.html)
 - libcurl: [Website](https://curl.se/libcurl/) - [Source](https://github.com/curl/curl) - [License](https://raw.githubusercontent.com/curl/curl/master/COPYING)
 
 ## Credits
