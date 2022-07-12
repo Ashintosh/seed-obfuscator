@@ -47,7 +47,7 @@ std::string seedstringtools::vector_to_string(std::vector<std::string> input) {
 
 // Public //
 
-std::string seedstringtools::caesar_obfuscate(std::string seed, std::string passphrase, bool reverse_obfuscation, bool cross_wordlist)
+std::string seedstringtools::caesar_obfuscate(std::string seed, std::string passphrase, int offset_multiplier, bool reverse_obfuscation, bool cross_wordlist)
 {
     std::string passphrase_sha256 = SHA256::to_sha256(passphrase);
     std::string offset_direc_determiner_sha256 = SHA256::to_sha256(passphrase_sha256);
@@ -57,31 +57,28 @@ std::string seedstringtools::caesar_obfuscate(std::string seed, std::string pass
     std::vector<int> offset_direc_determiner;
     std::vector<std::string> ob_seed_words;
 
-    for (char& c : passphrase_sha256) {
+    for (char& c : passphrase_sha256)
         offset.push_back((int) c - '0');
-    }
-
-    for (char& c : offset_direc_determiner_sha256) {
+    for (char& c : offset_direc_determiner_sha256)
         offset_direc_determiner.push_back((int) c - '0');
-    }
 
     for (int i = 0; i < split_seed_phrase.size(); i++) {
         int word_index = bip39::get_element_index(split_seed_phrase.at(i));
         int new_word_index;
 
         // Check if word exists in bip39 wordlist
-        if (word_index < 0) {
-            return "";
-        }
+        if (word_index < 0)  return "";
 
-        // Decide the offset direction with the direction determiner offset by deciding if value is odd or even, check if reversing obfuscation
-        if ((int)(offset_direc_determiner.at(i)) & 1) {
-            if (reverse_obfuscation)  new_word_index = word_index + offset.at(i) * 20;
-            else  new_word_index = word_index - offset.at(i) * 20;
-        } else {
-            if (reverse_obfuscation)  new_word_index = word_index - offset.at(i) * 20;
-            else  new_word_index = word_index + offset.at(i) * 20;
+        // Decide offset shift direction with the determiner offset by calculating if value is odd or even
+        int offset_direc_left = (int)(offset_direc_determiner.at(i) & 1);
+
+        // Get new bip39 word index using offset value and shift direction
+        if (offset_direc_left && reverse_obfuscation ||
+           !offset_direc_left && !reverse_obfuscation)
+        {
+            new_word_index = word_index + offset.at(i) * offset_multiplier;
         }
+        else  new_word_index = word_index - offset.at(i) * offset_multiplier;
 
         // Check if new index is out of bounds in the bip39 wordlist and correct the value if necessary
         while (new_word_index < 0 || new_word_index > bip39::bip_39_wordlist.size()) {
