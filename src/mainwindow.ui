@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>500</width>
-    <height>618</height>
+    <height>672</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,13 +19,13 @@
   <property name="minimumSize">
    <size>
     <width>500</width>
-    <height>618</height>
+    <height>672</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>500</width>
-    <height>618</height>
+    <height>672</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -115,7 +115,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>260</y>
+      <y>330</y>
       <width>461</width>
       <height>28</height>
      </rect>
@@ -127,10 +127,10 @@
    <widget class="QGroupBox" name="grpResult">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>350</y>
-      <width>471</width>
-      <height>211</height>
+      <x>18</x>
+      <y>410</y>
+      <width>461</width>
+      <height>201</height>
      </rect>
     </property>
     <property name="title">
@@ -139,8 +139,8 @@
     <widget class="QTextEdit" name="txtResult">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>40</y>
+       <x>15</x>
+       <y>36</y>
        <width>431</width>
        <height>151</height>
       </rect>
@@ -154,13 +154,45 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>300</y>
+      <y>363</y>
       <width>461</width>
       <height>28</height>
      </rect>
     </property>
     <property name="text">
      <string>Debfuscate</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblOffsetMultiplier">
+    <property name="geometry">
+     <rect>
+      <x>21</x>
+      <y>260</y>
+      <width>101</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Offset Multiplier</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spnOffsetMultiplier">
+    <property name="geometry">
+     <rect>
+      <x>21</x>
+      <y>285</y>
+      <width>81</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>2</number>
+    </property>
+    <property name="maximum">
+     <number>500</number>
+    </property>
+    <property name="value">
+     <number>20</number>
     </property>
    </widget>
   </widget>

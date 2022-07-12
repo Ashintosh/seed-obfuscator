@@ -37,7 +37,7 @@ private:
     static std::string vector_to_string(std::vector<std::string> input);
 
 public:
-    static std::string obfuscate_seed(std::string seed, std::string passphrase, bool reverse_obfuscation);
+    static std::string caesar_obfuscate(std::string seed, std::string passphrase, int offset_multiplier, bool reverse_obfuscation);
 };
 
 #endif // SEEDSTRINGTOOLS_H

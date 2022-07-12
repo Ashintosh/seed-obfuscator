@@ -37,6 +37,7 @@ void MainWindow::on_btnObfuscate_clicked()
     std::string seed_phrase = ui->lnSeed->text().toStdString();
     std::string passphrase = ui->lnPassphrase->text().toStdString();
     std::string confirm_passphrase = ui->lnConfirmPassphrase->text().toStdString();
+    int offset_multiplier = ui->spnOffsetMultiplier->value();
 
     if (passphrase.length() < 6) {
         QMessageBox::warning(this, "Warning", "Passphrase should be at least 6 characters.", QMessageBox::Ok);
@@ -47,7 +48,7 @@ void MainWindow::on_btnObfuscate_clicked()
         return;
     }
 
-    std::string obfuscated_seed = seedstringtools::obfuscate_seed(seed_phrase, passphrase, false);
+    std::string obfuscated_seed = seedstringtools::caesar_obfuscate(seed_phrase, passphrase, offset_multiplier, false);
     if (obfuscated_seed.empty()) {
         QMessageBox::warning(this, "Warning", "Seed phrase contains words that are not a part of the BIP-39 wordlist.", QMessageBox::Ok);
         return;
@@ -60,13 +61,14 @@ void MainWindow::on_btnDeobfuscate_clicked()
 {
     std::string seed_phrase = ui->lnSeed->text().toStdString();
     std::string passphrase = ui->lnPassphrase->text().toStdString();
+    int offset_multiplier = ui->spnOffsetMultiplier->value();
 
     if (passphrase.length() < 6) {
         QMessageBox::warning(this, "Warning", "Passphrase should be at least 6 characters.", QMessageBox::Ok);
         return;
     }
 
-    std::string deobfuscated_seed = seedstringtools::obfuscate_seed(seed_phrase, passphrase, true);
+    std::string deobfuscated_seed = seedstringtools::caesar_obfuscate(seed_phrase, passphrase, offset_multiplier, true);
     if (deobfuscated_seed.empty()) {
         QMessageBox::warning(this, "Warning", "Seed phrase contains words that are not a part of the BIP-39 wordlist.", QMessageBox::Ok);
         return;

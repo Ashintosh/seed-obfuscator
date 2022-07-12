@@ -367,10 +367,10 @@ const std::vector<std::string> bip39::bip_39_wordlist = {
 int bip39::get_element_index(std::string element)
 {
     int index = -1;
-    auto iterate = std::find(bip39::bip_39_wordlist.begin(), bip39::bip_39_wordlist.end(), element);
+    auto iterate = std::find(bip_39_wordlist.begin(), bip_39_wordlist.end(), element);
 
-    if (iterate != bip39::bip_39_wordlist.end()) {
-        index = iterate - bip39::bip_39_wordlist.begin();
+    if (iterate != bip_39_wordlist.end()) {
+        index = iterate - bip_39_wordlist.begin();
     }
 
     return index;
