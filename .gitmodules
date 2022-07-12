@@ -1,0 +1,3 @@
+[submodule "external/src/curl"]
+	path = external/src/curl
+	url = https://github.com/curl/curl.git
