@@ -673,7 +673,7 @@ the library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.  But first, please read
 <https://www.gnu.org/licenses/why-not-lgpl.html>.
 
-This software includes third party open source software components: Jérémy LAMBERT (SystemGlitch)'s SHA256, libcurl, Qt
+This software includes third party open source software components: Jérémy LAMBERT (SystemGlitch)'s SHA256, libcurl, Qt6
 Each of these software components have their own license. Please see below.
 
 Jérémy LAMBERT (SystemGlitch)'s SHA256 License:
@@ -725,8 +725,8 @@ be used in advertising or otherwise to promote the sale, use or other dealings
 in this Software without prior written authorization of the copyright holder.
 End libcurl License
 
-Qt License:
-GNU LESSER GENERAL PUBLIC LICENSE
+Qt6 License:
+                 GNU LESSER GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
 
  Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>
@@ -890,4 +890,4 @@ whether future versions of the GNU Lesser General Public License shall
 apply, that proxy's public statement of acceptance of any version is
 permanent authorization for you to choose that version for the
 Library.
-End Qt License
+End Qt6 License
