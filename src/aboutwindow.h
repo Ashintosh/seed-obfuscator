@@ -22,7 +22,6 @@
 #include <QWidget>
 #include <QDesktopServices>
 #include <QMessageBox>
-#include <QNetworkReply>
 #include <QUrl>
 
 #include "ui_aboutwindow.h"
