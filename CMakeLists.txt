@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(seed-obfuscator VERSION 0.1 LANGUAGES CXX)
+project(seed-encryptor  VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -14,60 +14,56 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
-set(PROJECT_SOURCES
+set(SOURCES
         src/main.cpp
         src/mainwindow.cpp
-        src/mainwindow.h
-        src/mainwindow.ui
         src/aboutwindow.cpp
-        src/aboutwindow.h
-        src/aboutwindow.ui
         src/seedstringtools.cpp
-        src/seedstringtools.h
         src/bip39.cpp
-        src/bip39.h
-        src/sha256/sha256.cpp
-        src/sha256/sha256.h
-        src/seedobfuscator.cpp
-        src/seedobfuscator.h
-        src/curl/curl.cpp
-        src/curl/curl.h
-        images.qrc
-    )
+        src/seedencryptor.cpp
+        src/crypto/crypto.cpp
+)
+
+set(HEADERS
+    src/mainwindow.h
+    src/aboutwindow.h
+    src/seedstringtools.h
+    src/bip39.h
+    src/seedencryptor.h
+    src/crypto/crypto.h
+)
+
+set(UI
+    src/mainwindow.ui
+    src/aboutwindow.ui
+)
+
+set(RESOURCES
+    images.qrc
+)
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(seed-obfuscator
+    qt_add_executable(seed-encryptor
         MANUAL_FINALIZATION
-        ${PROJECT_SOURCES}
+        ${SOURCES}
+        ${HEADERS}
+        ${UI}
+        ${RESOURCES}
     )
-# Define target properties for Android with Qt 6 as:
-#    set_property(TARGET seed-obfuscator APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
-#                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
-# For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
 else()
-    if(ANDROID)
-        add_library(seed-obfuscator SHARED
-            ${PROJECT_SOURCES}
-        )
-# Define properties for Android with Qt 5 after find_package() calls as:
-#    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
-    else()
-        add_executable(seed-obfuscator
-            ${PROJECT_SOURCES}
-        )
-    endif()
+    add_executable(seed-encryptor
+        ${SOURCES}
+        ${HEADERS}
+        ${UI}
+    )
 endif()
 
-target_link_libraries(seed-obfuscator PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(seed-encryptor PRIVATE
+    Qt${QT_VERSION_MAJOR}::Widgets
+    ${CMAKE_SOURCE_DIR}/external/lib/cryptopp/libcryptopp.a
+)
 
-if (WIN32)
-    find_package( CURL REQUIRED )
-    target_link_libraries( seed-obfuscator PRIVATE CURL::libcurl )
-else()
-    target_link_libraries(seed-obfuscator PRIVATE curl)
-endif()
-
-set_target_properties(seed-obfuscator PROPERTIES
+set_target_properties(seed-encryptor PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER ashs.club
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
@@ -76,5 +72,5 @@ set_target_properties(seed-obfuscator PROPERTIES
 )
 
 if(QT_VERSION_MAJOR EQUAL 6)
-    qt_finalize_executable(seed-obfuscator)
+    qt_finalize_executable(seed-encryptor )
 endif()

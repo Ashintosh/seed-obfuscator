@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////
-// seed-obfuscator                                                        // 
+// seed-encryptor                                                         //
 // Copyright (C) 2022 Ashintosh                                           //
 //                                                                        //
 // This program is free software: you can redistribute it and/or modify   //
@@ -49,8 +49,8 @@ std::string seedstringtools::vector_to_string(std::vector<std::string> input) {
 
 std::string seedstringtools::caesar_obfuscate(std::string seed, std::string passphrase, int offset_multiplier, bool reverse_obfuscation)
 {
-    std::string passphrase_sha256 = SHA256::to_sha256(passphrase);
-    std::string offset_direc_determiner_sha256 = SHA256::to_sha256(passphrase_sha256);
+    std::string passphrase_sha256 = crypto::to_sha256(passphrase);
+    std::string offset_direc_determiner_sha256 = crypto::to_sha256(passphrase_sha256);
     std::vector<std::string> split_seed_phrase = split_seed_by_whitespace(seed);
 
     std::vector<int> offset;

@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////
-// seed-obfuscator                                                        //
+// seed-encryptor                                                         //
 // Copyright (C) 2022 Ashintosh                                           //
 //                                                                        //
 // This program is free software: you can redistribute it and/or modify   //
@@ -25,7 +25,7 @@
 #include <QUrl>
 
 #include "ui_aboutwindow.h"
-#include "seedobfuscator.h"
+#include "seedencryptor.h"
 #include "curl/curl.h"
 
 namespace Ui {
@@ -41,7 +41,6 @@ public:
     ~aboutwindow();
 
 private slots:
-    void on_btnCheckUpdate_clicked();
 
 private:
     Ui::aboutwindow *ui;

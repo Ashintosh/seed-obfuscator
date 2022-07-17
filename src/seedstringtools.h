@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////
-// seed-obfuscator                                                        // 
+// seed-encryptor                                                         //
 // Copyright (C) 2022 Ashintosh                                           //
 //                                                                        //
 // This program is free software: you can redistribute it and/or modify   //
@@ -27,7 +27,7 @@
 #include <vector>
 
 #include "bip39.h"
-#include "sha256/sha256.h"
+#include "crypto/crypto.h"
 
 
 class seedstringtools

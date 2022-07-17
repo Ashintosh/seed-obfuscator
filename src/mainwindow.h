@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////
-// seed-obfuscator                                                        // 
+// seed-encryptor                                                         //
 // Copyright (C) 2022 Ashintosh                                           //
 //                                                                        //
 // This program is free software: you can redistribute it and/or modify   //

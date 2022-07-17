@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////
-// seed-obfuscator                                                        //
+// seed-encryptor                                                         //
 // Copyright (C) 2022 Ashintosh                                           //
 //                                                                        //
 // This program is free software: you can redistribute it and/or modify   //
@@ -24,7 +24,7 @@ aboutwindow::aboutwindow(QWidget *parent) :
     ui(new Ui::aboutwindow)
 {
     ui->setupUi(this);
-    ui->lblVersion_Val->setText(QString::fromStdString("Version: " + seedobfuscator::get_version_str()));
+    ui->lblVersion_Val->setText(QString::fromStdString("Version: " + seedencryptor::get_version_str()));
 }
 
 aboutwindow::~aboutwindow()
@@ -32,24 +32,6 @@ aboutwindow::~aboutwindow()
     delete ui;
 }
 
-void aboutwindow::on_btnCheckUpdate_clicked()
-{
-    std::string latest_version = curl::url_to_str("https://raw.githubusercontent.com/Ashintosh/seed-obfuscator/main/VERSION");
-    latest_version.erase(std::remove_if(latest_version.begin(), latest_version.end(), ::isspace), latest_version.end());
 
-    if (latest_version == "null") {
-        QMessageBox::warning(this, "Error", "Could not connect to repository.", QMessageBox::Ok);
-        return;
-    } else if (latest_version == seedobfuscator::get_version_str()) {
-        QMessageBox::information(this, "Update", "You are running the latest release.", QMessageBox::Ok);
-        return;
-    } else {
-        int result = QMessageBox::information(this, "Update", "Update available!\nWould you like to get the latest release?", QMessageBox::Yes|QMessageBox::No);
-        if (result == QMessageBox::Yes) {
-            QString link = "https://github.com/Ashintosh/seed-obfuscator/releases/tag/v" + QString::fromStdString(latest_version);
-            QDesktopServices::openUrl(QUrl(link));
-        }
-        return;
-    }
-}
+
 

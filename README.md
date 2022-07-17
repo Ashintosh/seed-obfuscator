@@ -15,7 +15,4 @@ This tool makes it easier to encrypt your seed phrases with your own passphrase 
 
 ## Dependencies
 - Qt6: [Website](https://www.qt.io/) - [Source](https://github.com/qt/qtbase) - [License](https://doc.qt.io/qt-6/lgpl.html)
-- libcurl: [Website](https://curl.se/libcurl/) - [Source](https://github.com/curl/curl) - [License](https://raw.githubusercontent.com/curl/curl/master/COPYING)
-
-## Credits
-- src/sha256/: [Jérémy LAMBERT (SystemGlitch)](https://github.com/System-Glitch) - [Source](https://github.com/System-Glitch/SHA256) - [License](https://raw.githubusercontent.com/Ashintosh/seed-obfuscator/main/src/sha256/LICENSE)
+- Crypto++: [Website](https://cryptopp.com/) - [Source](https://github.com/weidai11/cryptopp) - [License](https://github.com/weidai11/cryptopp/blob/master/License.txt)
