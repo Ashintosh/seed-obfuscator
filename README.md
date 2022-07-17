@@ -6,7 +6,7 @@ This tool makes it easier to encrypt your seed phrases with your own passphrase 
 
 *NOTICE: Any wallet seed that has not been created using the BIP-39 wordlist will not be supported by this tool.*
 
-## Obfuscation Types
+## Encryption Types
 - BIP-39 "Caesar Cipher" style encryption
 - AES-256-CBC encryption with easy-to-read formatting
 
