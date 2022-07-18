@@ -4,10 +4,8 @@ We know the safest way to store your crypto wallet seed phrases is on physical m
 
 This tool makes it easier to encrypt your seed phrases with your own passphrase so you can safely store them physically. This tools has two available encryption methods: Custom Caeser Cipher style encryption, AES-256-CBC encryption.
 
-*NOTICE: Any wallet seed that has not been created using the BIP-39 wordlist will not be supported by this tool.*
-
 ## Encryption Types
-- BIP-39 "Caesar Cipher" style encryption
+- BIP-39 "Caesar Cipher" style encryption (Only supports seeds created using the BIP-39 wordlist)
 - AES-256-CBC encryption with easy-to-read formatting
 
 ## To Add
