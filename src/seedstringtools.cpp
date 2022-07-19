@@ -21,37 +21,37 @@
 
 // Private //
 
-std::vector<std::string> seedstringtools::split_seed_by_whitespace(std::string input)
+std::vector<std::string> seedstringtools::split_seed_by_whitespace(std::string pSeed)
 {
-    std::vector<std::string> seed_word_list;
-    std::istringstream stringstream(input);
-    std::string stringstream_res;
+    std::vector<std::string> seedWordList;
+    std::istringstream stringstream(pSeed);
+    std::string stringstream_result;
 
     // Add each word in seed phrase, separated by space, to vector string
-    while (getline(stringstream, stringstream_res, ' ')) {
-        seed_word_list.push_back(stringstream_res);
+    while (getline(stringstream, stringstream_result, ' ')) {
+        seedWordList.push_back(stringstream_result);
     }
 
-    return seed_word_list;
+    return seedWordList;
 }
 
-std::string seedstringtools::vector_to_string(std::vector<std::string> input) {
-    std::string output_string = "";
-    for (std::string &item : input) {
-        output_string.append(item);
+std::string seedstringtools::vector_to_string(std::vector<std::string> pVctr) {
+    std::string output = "";
+    for (std::string &item : pVctr) {
+        output.append(item);
     }
 
-    return output_string;
+    return output;
 }
 
 
 // Public //
 
-std::string seedstringtools::caesar_obfuscate(std::string seed, std::string passphrase, int offset_multiplier, bool reverse_obfuscation)
+std::string seedstringtools::caesar_encrypt(std::string pSeed, std::string pPassphrase, int pOffsetMult, bool pReverse)
 {
-    std::string passphrase_sha256 = crypto::to_sha256(passphrase);
-    std::string offset_direc_determiner_sha256 = crypto::to_sha256(passphrase_sha256);
-    std::vector<std::string> split_seed_phrase = split_seed_by_whitespace(seed);
+    std::string passphrase_sha256 = crypto::sha256_hash(pPassphrase);
+    std::string offset_direc_determiner_sha256 = crypto::sha256_hash(passphrase_sha256);
+    std::vector<std::string> split_seed_phrase = split_seed_by_whitespace(pSeed);
 
     std::vector<int> offset;
     std::vector<int> offset_direc_determiner;
@@ -73,12 +73,12 @@ std::string seedstringtools::caesar_obfuscate(std::string seed, std::string pass
         int offset_direc_left = (int)(offset_direc_determiner.at(i) & 1);
 
         // Get new bip39 word index using offset value and shift direction
-        if (offset_direc_left && reverse_obfuscation ||
-           !offset_direc_left && !reverse_obfuscation)
+        if (offset_direc_left && pReverse ||
+           !offset_direc_left && !pReverse)
         {
-            new_word_index = word_index + offset.at(i) * offset_multiplier;
+            new_word_index = word_index + offset.at(i) * pOffsetMult;
         }
-        else  new_word_index = word_index - offset.at(i) * offset_multiplier;
+        else  new_word_index = word_index - offset.at(i) * pOffsetMult;
 
         // Check if new index is out of bounds in the bip39 wordlist and correct the value if necessary
         while (new_word_index < 0 || new_word_index > bip39::bip_39_wordlist.size()) {
@@ -98,3 +98,29 @@ std::string seedstringtools::caesar_obfuscate(std::string seed, std::string pass
     return vector_to_string(ob_seed_words);
 }
 
+std::string seedstringtools::aes_encrypt(std::string pSeed, std::string pPassphrase, bool pReverse)
+{
+    std::vector<std::string> split_seed_phrase = split_seed_by_whitespace(pSeed);
+    std::vector<int> word_indexes;
+    std::string plaintext_conv = "";
+
+    for (std::string &word : split_seed_phrase) {
+        int index = bip39::get_element_index(word);
+        std::ostringstream ss;
+        ss << std::hex << index;
+        plaintext_conv.append(ss.str() + ".");
+    }
+
+    std::string encrypted_str = crypto::aes_pbkdf2_encrypt(plaintext_conv, pPassphrase);
+    std::string encrypted_str_conv = "";
+
+    for (int i = 0; i < encrypted_str.size(); i++) {
+
+        if ((i % 5) == 0 && i != 0) {
+             encrypted_str_conv.push_back(encrypted_str.at(i));
+             encrypted_str_conv.push_back(' ');
+        } else  encrypted_str_conv.push_back(encrypted_str.at(i));
+    }
+
+    return encrypted_str_conv;
+}

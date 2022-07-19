@@ -33,11 +33,12 @@
 class seedstringtools
 {
 private:
-    static std::vector<std::string> split_seed_by_whitespace(std::string input);
-    static std::string vector_to_string(std::vector<std::string> input);
+    static std::vector<std::string> split_seed_by_whitespace(std::string pSeed);
+    static std::string vector_to_string(std::vector<std::string> pVctr);
 
 public:
-    static std::string caesar_obfuscate(std::string seed, std::string passphrase, int offset_multiplier, bool reverse_obfuscation);
+    static std::string caesar_encrypt(std::string pSeed, std::string pPassphrase, int pOffsetMult, bool pReverse);
+    static std::string aes_encrypt(std::string pSeed, std::string pPassphrase, bool pReverse);
 };
 
 #endif // SEEDSTRINGTOOLS_H

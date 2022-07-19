@@ -15,13 +15,13 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 set(SOURCES
-        src/main.cpp
-        src/mainwindow.cpp
-        src/aboutwindow.cpp
-        src/seedstringtools.cpp
-        src/bip39.cpp
-        src/seedencryptor.cpp
-        src/crypto/crypto.cpp
+    src/main.cpp
+    src/mainwindow.cpp
+    src/aboutwindow.cpp
+    src/seedstringtools.cpp
+    src/bip39.cpp
+    src/seedencryptor.cpp
+    src/crypto.cpp
 )
 
 set(HEADERS
@@ -30,7 +30,7 @@ set(HEADERS
     src/seedstringtools.h
     src/bip39.h
     src/seedencryptor.h
-    src/crypto/crypto.h
+    src/crypto.h
 )
 
 set(UI

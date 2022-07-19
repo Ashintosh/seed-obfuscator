@@ -364,10 +364,10 @@ const std::vector<std::string> bip39::bip_39_wordlist = {
     "zero", "zone", "zoo"
 };
 
-int bip39::get_element_index(std::string element)
+int bip39::get_element_index(std::string pElement)
 {
     int index = -1;
-    auto iterate = std::find(bip_39_wordlist.begin(), bip_39_wordlist.end(), element);
+    auto iterate = std::find(bip_39_wordlist.begin(), bip_39_wordlist.end(), pElement);
 
     if (iterate != bip_39_wordlist.end()) {
         index = iterate - bip_39_wordlist.begin();

@@ -20,13 +20,23 @@
 #define CRYPTO_H
 
 #include <iostream>
+#include <cryptopp/aes.h>
 #include <cryptopp/sha.h>
 #include <cryptopp/hex.h>
+#include <cryptopp/pwdbased.h>
+#include <cryptopp/rijndael.h>
+#include <cryptopp/cryptlib.h>
+#include <cryptopp/osrng.h>
+#include <cryptopp/files.h>
+#include <cryptopp/modes.h>
 
 class crypto
 {
 public:
-    static std::string to_sha256(std::string input);
+    static std::string sha256_hash(std::string pPlainText);
+    static CryptoPP::SecByteBlock pbkdf2_salt_hash(std::string pPlainText, CryptoPP::SecByteBlock pSalt);
+    static std::string aes_pbkdf2_encrypt(std::string pPlainText, std::string pKey);
+    static std::string aes_pbkdf2_decrypt(std::string pCipherText, std::string pKey);
 };
 
 #endif // CRYPTO_H
